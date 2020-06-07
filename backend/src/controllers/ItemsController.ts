@@ -1,18 +1,21 @@
-import {Request, Response} from 'express'
+import { Request, Response } from 'express';
+import knex from '../database/connection';
+import ip from 'ip';
 
-class ItemsControler {
-    async index(req: Request, res: Response){
+class ItemsController{
+    async index(request: Request, response: Response) {
         const items = await knex('items').select('*');
-    
+
         const serializedItems = items.map(item => {
             return {
                 id: item.id,
                 title: item.title,
-                image_url: `http://localhost:3333/uploads/${item.image}`
-            }
-        })
-        res.json(serializedItems);
+                image_url: `http://${ip.address()}:3333/uploads/${item.image}`
+            };
+        });
+
+        return response.json(serializedItems);
     }
 }
 
-export default ItemsControler;
+export default ItemsController;
