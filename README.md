@@ -1,2 +1,2 @@
-# egather
-A platform for finding and setting up recyclables collection sites
+# ecoleta
+Projeto desenvolvido durante Next Level Week #01
